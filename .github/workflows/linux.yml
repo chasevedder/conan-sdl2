@@ -6,15 +6,20 @@ env:
   CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
 
 jobs:
-  Gcc:
+  conan:
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
       matrix:
-        version: ["4.9", "5", "6", "7", "8", "9"]
-    env:
-      CONAN_GCC_VERSIONS: ${{matrix.version}}
-    name: GCC ${{ matrix.version }}
+        compiler: 
+        - { name: "GCC", version: "4.9" }
+        - { name: "GCC", version: "5" }
+        - { name: "GCC", version: "6" }
+        - { name: "GCC", version: "7" }
+        - { name: "GCC", version: "8" }
+        - { name: "GCC", version: "9" }
+      # ["3.9", "4.0", "5.0", "6.0", "7.0", "8", "9"]
+    name: ${{ matrix.compiler.name }} ${{ matrix.compiler.version }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
@@ -24,27 +29,8 @@ jobs:
         run: |
           pip install bincrafters_package_tools
           conan user
-      - name: Run
-        run: |
-          python build.py
-
-  Clang:
-    runs-on: ubuntu-18.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["3.9", "4.0", "5.0", "6.0", "7.0", "8", "9"]
-    env:
-      CONAN_CLANG_VERSIONS: ${{matrix.version}}
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-python@v1
-        with:
-          python-version: '3.8'
-      - name: Install Conan
-        run: |
-          pip install bincrafters_package_tools
-          conan user
+          CONAN_${{ matrix.compiler.name }}_VERSIONS="${{ matrix.compiler.version }}"
+          echo ${CONAN_${{ matrix.compiler.name }}_VERSIONS}
       - name: Run
         run: |
           python build.py
