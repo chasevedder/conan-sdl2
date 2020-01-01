@@ -18,7 +18,13 @@ jobs:
         - { name: "GCC", version: "7" }
         - { name: "GCC", version: "8" }
         - { name: "GCC", version: "9" }
-      # ["3.9", "4.0", "5.0", "6.0", "7.0", "8", "9"]
+        - { name: "CLANG", version: "3.9" }
+        - { name: "CLANG", version: "4.0" }
+        - { name: "CLANG", version: "5.0" }
+        - { name: "CLANG", version: "6.0" }
+        - { name: "CLANG", version: "7.0" }
+        - { name: "CLANG", version: "8" }
+        - { name: "CLANG", version: "9" }
     name: ${{ matrix.compiler.name }} ${{ matrix.compiler.version }}
     steps:
       - uses: actions/checkout@v1
@@ -29,8 +35,7 @@ jobs:
         run: |
           pip install bincrafters_package_tools
           conan user
-          CONAN_${{ matrix.compiler.name }}_VERSIONS="${{ matrix.compiler.version }}"
-          echo ${CONAN_${{ matrix.compiler.name }}_VERSIONS}
       - name: Run
         run: |
+          CONAN_${{ matrix.compiler.name }}_VERSIONS="${{ matrix.compiler.version }}"
           python build.py
