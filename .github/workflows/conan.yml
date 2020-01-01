@@ -1,3 +1,4 @@
+
 # bincrafters-conventions:workflow-version:1
 # You can add custom environment variables above the version tag 
 # Do not modify the tag or anything below the tag
@@ -32,7 +33,7 @@ jobs:
         - { name: "CLANG", version: "8"   }
         - { name: "CLANG", version: "9"   }
     name: ${{ matrix.compiler.name }} ${{ matrix.compiler.version }}
-    if: env['splitByBuildTypes'] != "true"
+    if: splitByBuildTypes != "true"
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
@@ -83,7 +84,7 @@ jobs:
         - { name: "CLANG", version: "9", buildType: "Debug"     }
         - { name: "CLANG", version: "9", buildType: "Release"   }
     name: ${{ matrix.compiler.name }} ${{ matrix.compiler.version }} ${{ matrix.compiler.buildType }}
-    if: env['splitByBuildTypes'] == "true"
+    if: splitByBuildTypes == "true"
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
