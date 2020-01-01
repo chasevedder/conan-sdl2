@@ -37,5 +37,5 @@ jobs:
           conan user
       - name: Run
         run: |
-          CONAN_${{ matrix.compiler.name }}_VERSIONS="${{ matrix.compiler.version }}"
+          export CONAN_${{ matrix.compiler.name }}_VERSIONS="${{ matrix.compiler.version }}"
           python build.py
