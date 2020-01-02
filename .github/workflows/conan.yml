@@ -1,5 +1,5 @@
 env:
-  splitByBuildTypes: false
+  SPLIT_BY_BUILD_TYPES: false
 
 
 # bincrafters-conventions:workflow-version:1
@@ -35,9 +35,9 @@ jobs:
         - { name: "CLANG", version: "7.0" }
         - { name: "CLANG", version: "8"   }
         - { name: "CLANG", version: "9"   }
-    name: ${{ splitByBuildTypes }} ${{ matrix.compiler.version }}
+    name: ${{ SPLIT_BY_BUILD_TYPES }} ${{ matrix.compiler.version }}
     env:
-      splitByBuildTypes: false
+      SPLIT_BY_BUILD_TYPES: false
     # if: ${{ env.splitByBuildTypes }} != "true"
     steps:
       - uses: actions/checkout@v1
@@ -88,7 +88,7 @@ jobs:
         - { name: "CLANG", version: "8", buildType: "Release"   }
         - { name: "CLANG", version: "9", buildType: "Debug"     }
         - { name: "CLANG", version: "9", buildType: "Release"   }
-    name: ${{ splitByBuildTypes }} ${{ matrix.compiler.version }} ${{ matrix.compiler.buildType }}
+    name: ${{ SPLIT_BY_BUILD_TYPES }} ${{ matrix.compiler.version }} ${{ matrix.compiler.buildType }}
     # if: ${{ env.splitByBuildTypes }} == "true"
     env:
       splitByBuildTypes: false
