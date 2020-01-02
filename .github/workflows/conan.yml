@@ -1,3 +1,6 @@
+env:
+  - splitByBuildTypes: false
+
 
 # bincrafters-conventions:workflow-version:1
 # You can add custom environment variables above the version tag 
