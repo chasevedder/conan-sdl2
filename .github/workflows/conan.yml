@@ -35,7 +35,7 @@ jobs:
         - { name: "CLANG", version: "7.0" }
         - { name: "CLANG", version: "8"   }
         - { name: "CLANG", version: "9"   }
-    name: ${{ env.splitByBuildTypes }} ${{ matrix.compiler.version }}
+    name: ${{ splitByBuildTypes }} ${{ matrix.compiler.version }}
     # if: ${{ env.splitByBuildTypes }} != "true"
     steps:
       - uses: actions/checkout@v1
@@ -86,7 +86,7 @@ jobs:
         - { name: "CLANG", version: "8", buildType: "Release"   }
         - { name: "CLANG", version: "9", buildType: "Debug"     }
         - { name: "CLANG", version: "9", buildType: "Release"   }
-    name: ${{ env.splitByBuildTypes }} ${{ matrix.compiler.version }} ${{ matrix.compiler.buildType }}
+    name: ${{ splitByBuildTypes }} ${{ matrix.compiler.version }} ${{ matrix.compiler.buildType }}
     # if: ${{ env.splitByBuildTypes }} == "true"
     steps:
       - uses: actions/checkout@v1
