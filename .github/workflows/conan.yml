@@ -1,5 +1,5 @@
 env:
-  - splitByBuildTypes: false
+  splitByBuildTypes: false
 
 
 # bincrafters-conventions:workflow-version:1
@@ -9,7 +9,7 @@ env:
 
 # Possible configurations:
 # env:
-#   - splitByBuildTypes: false  # Possible values "false", "true", default: false
+#   splitByBuildTypes: false  # Possible values "false", "true", default: false
 
 # You can futhermore set any envionment variable understood by Conan and Conan Package Tools
 
